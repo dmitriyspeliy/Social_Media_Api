@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <preConditions>
+        <dbms type="postgresql"/>
+    </preConditions>
+
+    <changeSet id="1" author="pospelov_dmitriy">
+        <tagDatabase tag="createTables"/>
+    </changeSet>
+    <include file="/sql/createTable/createTableUsers.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/createTable/createTablePosts.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/createTable/createTableRequests.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/index/createIndexForRequestsTable.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/createTable/createTableSubscriptions.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/index/createIndexForSubscriptionsTable.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/createTable/createTableFriendships.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/index/createIndexForFriendshipsTable.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/createTable/createTableChats.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/index/createIndexForChatsTable.sql" relativeToChangelogFile="true"/>
+    <include file="/sql/createTable/createTableMessages.sql" relativeToChangelogFile="true"/>
+
+    <changeSet id="2" author="pospelov_dmitriy">
+        <tagDatabase tag="insertValue"/>
+    </changeSet>
+    <include file="/sql/addValue/usersTableAddValue.sql" relativeToChangelogFile="true"/>
+
+
+
+</databaseChangeLog>
