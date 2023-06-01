@@ -29,22 +29,10 @@ public class Chat {
     Long chatId;
 
     /**
-     * Первый участник переписки
-     */
-    @ManyToOne
-    @JoinColumn(name = "first_id")
-    User firstId;
-
-    /**
-     * Второй участник переписки
-     */
-    @ManyToOne
-    @JoinColumn(name = "second_id")
-    User secondId;
-
-    /**
      * Сообщения в чате
      */
     @OneToMany(mappedBy = "messageList")
     List<Message> messageList;
+
+
 }

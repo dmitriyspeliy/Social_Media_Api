@@ -32,13 +32,19 @@ public class Post {
      */
     @ManyToOne
     @JoinColumn(name = "user_id")
-    User postList;
+    User userPosts;
 
     /**
      * Заголовок поста
      */
     @Column(name = "title")
     String title;
+
+    /**
+     * Текст поста
+     */
+    @Column(name = "text")
+    String text;
 
     /**
      * Картинка поста

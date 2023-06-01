@@ -53,6 +53,29 @@ public class CustomExceptionHandler {
     /**
      * Отловка спринга
      */
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(Unauthorized.class)
+    public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException(Unauthorized ex) {
+        String badRequest = "Для запроса нужен доступ к данным";
+        ErrorResponse error = new ErrorResponse(badRequest, ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+
+    /**
+     * Отловка спринга
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException(IllegalArgumentException ex) {
+        String badRequest = "Невалидные данные ( пустая строка, null, данные не прошли валидацию)";
+        ErrorResponse error = new ErrorResponse(badRequest, ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * Отловка спринга
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
     public final ResponseEntity<ErrorResponse> handleInvalidTraceIdException(ConstraintViolationException ex) {

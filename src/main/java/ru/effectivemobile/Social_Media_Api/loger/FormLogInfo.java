@@ -22,6 +22,24 @@ public class FormLogInfo {
         .append(CLASS_NAME)
         .append("\"").toString();
   }
+
+  public static String getInfo(String text) {
+    StackTraceElement STACK_TRACE_ELEMENT = new Throwable().getStackTrace()[1];
+    String METHOD_NAME = STACK_TRACE_ELEMENT.getMethodName();
+    String CLASS_NAME = STACK_TRACE_ELEMENT.getClassName();
+    return new StringBuilder()
+            .append("Старт метода ")
+            .append("\"")
+            .append(METHOD_NAME)
+            .append("\"")
+            .append(" из класса ")
+            .append("\"")
+            .append(CLASS_NAME)
+            .append("\n")
+            .append(text)
+            .append("\n").toString();
+  }
+
   public static String getCatch() {
     StackTraceElement STACK_TRACE_ELEMENT = new Throwable().getStackTrace()[1];
     String METHOD_NAME = STACK_TRACE_ELEMENT.getMethodName();

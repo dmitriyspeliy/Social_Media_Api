@@ -10,10 +10,15 @@ import ru.effectivemobile.Social_Media_Api.loger.FormLogInfo;
  */
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class ElemNotFoundChecked extends Exception{
-        public ElemNotFoundChecked(String textMessage) {
-            super("Exception: " + textMessage + FormLogInfo.getInfo());
-            System.err.println("Exception: " + textMessage + FormLogInfo.getException());
-        }
+public class ElemNotFoundChecked extends RuntimeException {
+    public ElemNotFoundChecked() {
+        super("Exception: " + FormLogInfo.getInfo());
+        System.err.println("Exception: " + FormLogInfo.getException());
+    }
+
+    public ElemNotFoundChecked(String textMessage) {
+        super("Exception: " + textMessage + FormLogInfo.getInfo());
+        System.err.println("Exception: " + textMessage + FormLogInfo.getException());
+    }
 }
 

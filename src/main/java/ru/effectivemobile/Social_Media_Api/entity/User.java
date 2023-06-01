@@ -1,10 +1,15 @@
 package ru.effectivemobile.Social_Media_Api.entity;
 
+import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Сущность юзера
@@ -18,6 +23,12 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "Users")
 @Entity
+@TypeDefs({
+        @TypeDef(
+                name = "list",
+                typeClass = ListArrayType.class
+        )
+})
 public class User {
 
     /**
@@ -47,56 +58,45 @@ public class User {
     /**
      * Посты юзера
      */
-    @OneToMany(mappedBy = "postList", fetch = FetchType.LAZY)
-    List<Post> postList;
+    @OneToMany(mappedBy = "userPosts", fetch = FetchType.LAZY)
+    List<Post> userPosts;
 
     /**
-     * Запросы от юзера
+     * Лист с id друзей
      */
-    @OneToMany(mappedBy = "requestIdTo", fetch = FetchType.LAZY)
-    List<Request> requestsTo;
+    @Type(type = "list")
+    @Column(name = "user_friend", columnDefinition = "bigint[]")
+    Set<Long> userFriends;
 
     /**
-     * Запросы к юзеру
+     * Лист с id подписчиков
      */
-    @OneToMany(mappedBy = "requestIdFrom", fetch = FetchType.LAZY)
-    List<Request> requestsFrom;
+    @Type(type = "list")
+    @Column(name = "user_subscribers", columnDefinition = "bigint[]")
+    Set<Long> userSubscribers;
 
     /**
-     * Лист тех, кто подписался
+     * Лист с id подписок на кого-то
      */
-    @OneToMany(mappedBy = "subscriberId", fetch = FetchType.LAZY)
-    List<Subscription> subscriberId;
+    @Type(type = "list")
+    @Column(name = "user_subscribed", columnDefinition = "bigint[]")
+    Set<Long> userSubscribed;
 
     /**
-     * Лист тех, на кого подписались
+     * Лист с id запросов в друзья
      */
-    @OneToMany(mappedBy = "subscribedId", fetch = FetchType.LAZY)
-    List<Subscription> subscribedId;
+    @Type(type = "list")
+    @Column(name = "user_request", columnDefinition = "bigint[]")
+    Set<Long> userRequests;
 
     /**
-     * Лист друзей
+     * Лист с id запросов в друзья
      */
-    @OneToMany(mappedBy = "firstFriendId", fetch = FetchType.LAZY)
-    List<Friendship> firstFriendId;
+    @Type(type = "list")
+    @Column(name = "user_chats", columnDefinition = "bigint[]")
+    Set<Long> userChats;
 
-    /**
-     * Лист друзей
-     */
-    @OneToMany(mappedBy = "secondFriendId", fetch = FetchType.LAZY)
-    List<Friendship> secondFriendId;
 
-    /**
-     * Лист чата
-     */
-    @OneToMany(mappedBy = "firstId", fetch = FetchType.LAZY)
-    List<Chat> firstId;
-
-    /**
-     * Лист чата
-     */
-    @OneToMany(mappedBy = "secondId", fetch = FetchType.LAZY)
-    List<Chat> secondId;
 
 
 }

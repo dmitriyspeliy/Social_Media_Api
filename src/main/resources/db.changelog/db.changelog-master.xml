@@ -14,14 +14,7 @@
     </changeSet>
     <include file="/sql/createTable/createTableUsers.sql" relativeToChangelogFile="true"/>
     <include file="/sql/createTable/createTablePosts.sql" relativeToChangelogFile="true"/>
-    <include file="/sql/createTable/createTableRequests.sql" relativeToChangelogFile="true"/>
-    <include file="/sql/index/createIndexForRequestsTable.sql" relativeToChangelogFile="true"/>
-    <include file="/sql/createTable/createTableSubscriptions.sql" relativeToChangelogFile="true"/>
-    <include file="/sql/index/createIndexForSubscriptionsTable.sql" relativeToChangelogFile="true"/>
-    <include file="/sql/createTable/createTableFriendships.sql" relativeToChangelogFile="true"/>
-    <include file="/sql/index/createIndexForFriendshipsTable.sql" relativeToChangelogFile="true"/>
     <include file="/sql/createTable/createTableChats.sql" relativeToChangelogFile="true"/>
-    <include file="/sql/index/createIndexForChatsTable.sql" relativeToChangelogFile="true"/>
     <include file="/sql/createTable/createTableMessages.sql" relativeToChangelogFile="true"/>
 
     <changeSet id="2" author="pospelov_dmitriy">
